@@ -1,8 +1,12 @@
-language: nodejs
+language: node_js
+
+node_js:
+  - lts/*
+  - node
 
 install:
   - npm install
 
 script:
   - npm run lint
-  - npx ava
+  - npm run test

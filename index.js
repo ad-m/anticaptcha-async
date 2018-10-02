@@ -32,10 +32,10 @@ const Anticaptcha = (client_key, opts = {}) => {
         });
 
     const getTaskId = (task) => request('createTask', {
-            task: task,
-            softId: soft_id,
-            languagePool: language_pool,
-        })
+        task: task,
+        softId: soft_id,
+        languagePool: language_pool,
+    })
         .then(body => body.taskId);
 
 
@@ -80,11 +80,10 @@ const Anticaptcha = (client_key, opts = {}) => {
         forms: fields,
     });
 
-    const reportIncorrect = (taskId) => client
-        .request('reportIncorrectImageCaptcha', {
-            taskId: taskId,
-            clientKey: client_key,
-        })
+    const reportIncorrect = (taskId) => request('reportIncorrectImageCaptcha', {
+        taskId: taskId,
+        clientKey: client_key,
+    })
         .then(body => body.status);
 
     const getResponse = (value, taskId) => ({
@@ -122,8 +121,8 @@ const Anticaptcha = (client_key, opts = {}) => {
     };
 
     const getBalance = () => request('getBalance', {
-            clientKey: client_key,
-        })
+        clientKey: client_key,
+    })
         .then(result => result.balance);
 
     return {
@@ -139,7 +138,7 @@ const Anticaptcha = (client_key, opts = {}) => {
         getRecaptcha,
         getFuncaptcha,
         getCustom,
-    }
+    };
 };
 
 module.exports = Anticaptcha;

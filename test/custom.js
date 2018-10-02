@@ -1,5 +1,4 @@
 'use strict';
-const anticaptcha = require('./../index');
 const { skipUntilEnv } = require('../lib.js');
 
 

@@ -1,5 +1,4 @@
 'use strict';
-const request = require('superagent');
 const path = require('path');
 const anticaptcha = require('../index');
 const fs = require('fs');

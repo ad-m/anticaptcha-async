@@ -15,7 +15,7 @@ const main = async () => {
 
     const result = await client.getRecaptcha(url, key);
     const data = {
-        'g-recaptcha-response': result.getValue()
+        'g-recaptcha-response': result.getValue(),
     };
     console.dir(data, {depth: null});
     const submit_resp = await agent

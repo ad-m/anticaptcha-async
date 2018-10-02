@@ -48,8 +48,9 @@ const main = async () => {
             ],
         },
     ];
-    return client.getCustom(assigment, image_url, fields, {
+    const result = await client.getCustom(assigment, image_url, fields, {
         delay: 10 * 1000,
     });
+    return result.getValue();
 };
 module.exports = main;

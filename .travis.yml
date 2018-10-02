@@ -8,5 +8,6 @@ install:
   - npm install
 
 script:
+  - curl https://httpbin.org/ip
   - npm run lint
   - npm run test

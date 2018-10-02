@@ -1,0 +1,20 @@
+{
+  "name": "anticaptcha-async",
+  "version": "0.1.0",
+  "description": "Modern asynchronous JavaScript API client for Anticaptcha service",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "lint": "eslint ."
+  },
+  "author": "Adam Dobrawy",
+  "license": "MIT",
+  "dependencies": {
+    "superagent": "^4.0.0-beta.5"
+  },
+  "devDependencies": {
+    "@hyperone/eslint-config": "^1.0.3",
+    "ava": "1.0.0-beta.8",
+    "eslint": "^5.6.1"
+  }
+}

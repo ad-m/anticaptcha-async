@@ -1,12 +1,32 @@
 {
   "name": "anticaptcha-async",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "Modern asynchronous JavaScript API client for Anticaptcha service",
   "main": "index.js",
   "scripts": {
     "test": "ava",
     "lint": "eslint ."
   },
+  "homepage": "https://github.com/ad-m/anticaptcha-async#readme",
+  "issues": {
+    "url": "https://github.com/ad-m/anticaptcha-async/issues",
+    "email": "anticaptcha@jawnosc.tk"
+  },
+  "repository": "github:ad-m/anticaptcha-async",
+  "keywords": [
+    "captcha",
+    "verify",
+    "verification",
+    "recaptcha",
+    "recaptcha2",
+    "recaptcahv2",
+    "funcaptcha",
+    "imagecaptcha",
+    "anticatpcah",
+    "anti-captcha",
+    "bot",
+    "captcha-solver"
+  ],
   "author": "Adam Dobrawy",
   "license": "MIT",
   "dependencies": {

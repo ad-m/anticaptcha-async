@@ -1,0 +1,11 @@
+# all the crap that's not neccessary for the npm module to work
+node_modules
+test
+examples
+lib.js # used for test only
+.eslintrc
+.gitignore
+.npmignore
+.travis.yml
+.idea
+*.tgz

@@ -2,7 +2,7 @@
 
 [![TravisCI status](https://travis-ci.com/ad-m/anticaptcha-async.svg?branch=master)](https://travis-ci.com/ad-m/anticaptcha-async)
 
-[![npm version](https://badge.fury.io/js/anticaptcha-async)](https://badge.fury.io/js/anticaptcha-async)
+[![npm version](https://img.shields.io/npm/v/anticaptcha-async.svg)](https://www.npmjs.com/package/anticaptcha-async)
 
 Client library for solve captchas with [Anticaptcha.com] support in
 modern promise-based way. It allows you to process a large number of tasks 
@@ -130,6 +130,7 @@ file for details
 [see examples]: https://github.com/ad-m/anticaptcha-async/tree/master/examples
 [create an issue]: https://github.com/ad-m/anticaptcha-async/issues/new
 [Anticaptcha.com]: http://getcaptchasolution.com/5tln8bfeif
+[examples]: https://github.com/ad-m/anticaptcha-async/tree/master/examples
 [SemVer]: http://semver.org/
 [tags on this repository]: https://github.com/ad-m/anticaptcha-async/tags
 [ad-m]: https://github.com/ad-m

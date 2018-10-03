@@ -1,6 +1,6 @@
 # anticaptcha-async
 
-[![TravisCI status](https://travis-ci.org/ad-m/anticaptcha-async.svg?branch=master)](https://travis-ci.org/ad-m/anticaptcha-async)
+[![TravisCI status](https://travis-ci.com/ad-m/anticaptcha-async.svg?branch=master)](https://travis-ci.com/ad-m/anticaptcha-async)
 
 [![npm version](https://badge.fury.io/js/anticaptcha-async)](https://badge.fury.io/js/anticaptcha-async)
 

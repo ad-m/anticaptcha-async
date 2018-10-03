@@ -1,6 +1,6 @@
 {
   "name": "anticaptcha-async",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Modern asynchronous JavaScript API client for Anticaptcha service",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "recaptcahv2",
     "funcaptcha",
     "imagecaptcha",
-    "anticatpcah",
+    "anticaptcha",
     "anti-captcha",
     "bot",
     "captcha-solver"

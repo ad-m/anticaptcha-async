@@ -29,12 +29,10 @@
   ],
   "author": "Adam Dobrawy",
   "license": "MIT",
-  "dependencies": {
-    "superagent": "^4.0.0-beta.5"
-  },
   "devDependencies": {
     "@hyperone/eslint-config": "^1.0.3",
     "ava": "1.0.0-beta.8",
-    "eslint": "^5.6.1"
+    "eslint": "^5.6.1",
+    "superagent": "^4.0.0-beta.5"
   }
 }

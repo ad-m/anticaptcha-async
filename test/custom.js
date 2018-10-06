@@ -12,5 +12,5 @@ skipUntilEnv('ANTICAPTCHA_KEY', 'client.getCustom', async t => {
         .toUpperCase();
 
     t.true(normalized_license_plate === 'TONFNTI');
-    t.true(result.color === 'grey');
+    t.true(['white', 'grey'].includes(result.color));
 });

@@ -1,5 +1,5 @@
 'use strict';
-const superagent = require('superagent');
+const https = require('https');
 
 const stream_to_base64 = (stream) => new Promise((resolve, reject) => {
     const bufs = [];
@@ -10,26 +10,43 @@ const stream_to_base64 = (stream) => new Promise((resolve, reject) => {
     stream.on('end', () => resolve(Buffer.concat(bufs).toString('base64')));
 });
 
+const postRequest = (url, data) => new Promise((resolve, reject) => {
+    const options = {
+        method: 'POST',
+    };
+    const req = https.request(url, options, (res) => {
+        const data = [];
+        res.on('data', (chunk) => data.push(chunk));
+        res.on('end', () => resolve(Buffer.concat(data).toString('utf-8')));
+        res.once('error', reject);
+    });
+    req.write(JSON.stringify(data));
+    req.once('error', reject);
+    req.end();
+});
+
 const Anticaptcha = (client_key, opts = {}) => {
     const soft_id = 847;
     const protocol = opts.unsecure ? 'http' : 'https';
     const host = opts.host || 'api.anti-captcha.com';
     const language_pool = opts.language_pool || 'en';
 
-    const request = (path, body) => superagent
-        .post(`${protocol}://${host}/${path}`, Object.assign({}, {
+    const request = (path, body) => {
+        const data = Object.assign({}, {
             clientKey: client_key,
-        }, body))
-        .then(resp => resp.body)
-        .then(body => {
-            if (body.errorId) {
-                const err = new Error(body.errorDescription);
-                err.errorId = body.errorId;
-                err.errorCode = body.errorCode;
-                throw err;
-            }
-            return body;
-        });
+        }, body);
+        return postRequest(`${protocol}://${host}/${path}`, data)
+            .then(content => JSON.parse(content))
+            .then(body => {
+                if (body.errorId) {
+                    const err = new Error(body.errorDescription);
+                    err.errorId = body.errorId;
+                    err.errorCode = body.errorCode;
+                    throw err;
+                }
+                return body;
+            });
+    };
 
     const getTaskId = (task) => request('createTask', {
         task: task,

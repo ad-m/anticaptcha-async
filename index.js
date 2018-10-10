@@ -26,7 +26,7 @@ const postRequest = (url, data) => new Promise((resolve, reject) => {
 });
 
 const Anticaptcha = (client_key, opts = {}) => {
-    const soft_id = 847;
+    const soft_id = 890;
     const protocol = opts.unsecure ? 'http' : 'https';
     const host = opts.host || 'api.anti-captcha.com';
     const language_pool = opts.language_pool || 'en';

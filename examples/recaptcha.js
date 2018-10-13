@@ -6,7 +6,7 @@ const anticaptcha = require('../index');
 const legible_useragent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) ' +
     'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36';
 
-const main = async () => {
+module.exports = async () => {
     const client = anticaptcha(process.env.ANTICAPTCHA_KEY);
 
     const url = 'https://www.google.com/recaptcha/api2/demo?invisible=false';
@@ -25,6 +25,3 @@ const main = async () => {
         .send({ 'g-recaptcha-response': result.getValue() });
     return submit_resp.text;
 };
-
-
-module.exports = main;

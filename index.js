@@ -10,14 +10,14 @@ const stream_to_base64 = (stream) => new Promise((resolve, reject) => {
     stream.on('end', () => resolve(Buffer.concat(bufs).toString('base64')));
 });
 
-const postRequest = (url, data) => new Promise((resolve, reject) => {
+const postRequest = (url, data={}) => new Promise((resolve, reject) => {
     const options = {
         method: 'POST',
     };
     const req = https.request(url, options, (res) => {
-        const data = [];
-        res.on('data', (chunk) => data.push(chunk));
-        res.on('end', () => resolve(Buffer.concat(data).toString('utf-8')));
+        const buf = [];
+        res.on('data', (chunk) => buf.push(chunk));
+        res.on('end', () => resolve(Buffer.concat(buf).toString('utf-8')));
         res.once('error', reject);
     });
     req.write(JSON.stringify(data));
@@ -52,8 +52,7 @@ const Anticaptcha = (client_key, opts = {}) => {
         task: task,
         softId: soft_id,
         languagePool: language_pool,
-    })
-        .then(body => body.taskId);
+    }).then(body => body.taskId);
 
 
     const getTaskResult = async (taskId, options = {}) => {
@@ -119,6 +118,7 @@ const Anticaptcha = (client_key, opts = {}) => {
         const task = await getRecaptchaTask(website_url, website_key, options);
         const taskId = await getTaskId(task);
         const result = await getTaskResult(taskId, options);
+        console.log(result);
         return getResponse(result.solution.gRecaptchaResponse, taskId);
     };
 
@@ -135,6 +135,21 @@ const Anticaptcha = (client_key, opts = {}) => {
         const taskId = await getTaskId(task);
         const result = await getTaskResult(taskId, options);
         return getResponse(result.solution.answers, taskId);
+    };
+
+    const patchPuppeterPage = async page => {
+        const url = await page.url();
+        // Get site-key
+        const site_key = await page.$eval('[data-sitekey]', el => el.dataset.sitekey);
+        // Solve response
+        const resolution = await getRecaptcha(url, site_key);
+        // Mark checkbox (only for UX experience)
+        const frames = await page.frames();
+        const frame = frames.find(frame => frame.url().includes('google.com/recaptcha/'));
+        const child_frame = frame.childFrames().find(frame => frame.url().includes('google.com/recaptcha/'));
+        await child_frame.$eval('.recaptcha-checkbox', el => el.classList.add('recaptcha-checkbox-checked'));
+        // Set proper value of form
+        return page.$eval('#g-recaptcha-response', (el, resolution) => el.value = resolution, resolution);
     };
 
     const getBalance = () => request('getBalance', {
@@ -155,6 +170,7 @@ const Anticaptcha = (client_key, opts = {}) => {
         getRecaptcha,
         getFuncaptcha,
         getCustom,
+        patchPuppeterPage,
     };
 };
 
